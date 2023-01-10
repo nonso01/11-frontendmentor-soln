@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Header from "./components/Header";
 import Attr from "./components/Attr";
-import Main from "./components/Main";
+import Main from "./components/main";
 import "../dist/main.min.css";
 
 function App() {
