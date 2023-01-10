@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Header from "./components/Header";
 import Attr from "./components/Attr";
+import Main from "./components/Main";
 import "../dist/main.min.css";
 
 function App() {
@@ -9,6 +10,7 @@ function App() {
   return (
     <>
       <Header />
+      <Main />
     </>
   );
 }
