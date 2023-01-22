@@ -7,4 +7,5 @@ vite.config.js
 style-guide*
 package*
 *.map
+*.ttf
 # note

@@ -1,7 +1,9 @@
 import { useState } from "react";
 import Header from "./components/Header";
-import Attr from "./components/Attr";
 import Main from "./components/main";
+import Card from "./components/Card";
+import Footer from "./components/Footer";
+import Attr from "./components/Attr";
 import "../dist/main.min.css";
 
 function App() {
@@ -11,6 +13,10 @@ function App() {
     <>
       <Header />
       <Main />
+      <div className="space"></div>
+      <Card />
+      <div className="space"></div>
+      <Footer />
     </>
   );
 }
