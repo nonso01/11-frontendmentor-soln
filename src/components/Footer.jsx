@@ -147,6 +147,8 @@ function Footer() {
           </span>
         </div>
       </div>
+
+      <div className="layer hide"></div>
     </div>
   );
 }

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Header from "./components/Header";
-import Main from "./components/main";
+import Main from "./components/Main";
 import Card from "./components/Card";
 import Footer from "./components/Footer";
 import Attr from "./components/Attr";

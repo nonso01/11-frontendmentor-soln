@@ -44,14 +44,13 @@ const cardData = [
   // },
 ];
 
-// const _card = d.querySelector(".card");
 
 function userIsDown(e) {
   const _t = e.target;
   const _p = d.querySelector(".card");
   _p.addEventListener("mousemove", moving);
 
-  log("down");
+  // log("down");
 
   if (_t.classList.contains("card__item")) {
     _t.classList.add("move");
@@ -60,7 +59,6 @@ function userIsDown(e) {
 
 function userIsUp(e) {
   const _t = e.target;
-
   const _p = d.querySelector(".card");
   _p.removeEventListener("mousemove", moving);
 
@@ -68,7 +66,7 @@ function userIsUp(e) {
     .querySelectorAll(".card__item")
     .forEach((card) => card.classList.remove("move"));
 
-  log("up");
+  // log("up");
 }
 
 function moving(e) {
@@ -79,10 +77,8 @@ function moving(e) {
     card.style.setProperty("--x", `${_x - _w}px`);
     card.style.setProperty("--y", `${_y - _h}px`);
   });
-  log(e.clientX);
+  // log(e.clientX);
 }
-
-function leaving() {}
 
 function Card() {
   const cardItems = cardData.map((item) => (
@@ -114,3 +110,4 @@ function Card() {
 }
 
 export default Card;
+export {log}

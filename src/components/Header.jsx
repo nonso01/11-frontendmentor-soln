@@ -1,8 +1,6 @@
 import React, { useState } from "react";
-import Button from "./Button";
-
-const w = globalThis ?? window;
-const d = document;
+import Button, { w, d } from "./Button";
+import { log } from "./Card";
 
 const navLinks = [
   {
@@ -27,8 +25,42 @@ const navLinks = [
   },
 ];
 
+const menuUrl = {
+  open: "../../images/icon-close.svg",
+  close: "../../images/icon-hamburger.svg",
+};
+
 const _span = d.createElement("span");
-_span.classList.add('over')
+_span.classList.add("over");
+
+w.addEventListener("resize", userIsResizing);
+
+function userIsResizing() {
+  // log(w.innerWidth);
+  const _a = d.querySelector(".menu");
+  if (w.innerWidth <= 768) {
+    _a.classList.remove("hide");
+  } else _a.classList.add("hide");
+}
+
+function userIsClickingOnMenu(e) {
+  let _s = e.target.src;
+  let _e = d.querySelector(".nav");
+  let _l = d.querySelector(".layer");
+  if (_s.match(/ham/g)) {
+    e.target.src = menuUrl.open;
+    _e.classList.add("menu");
+    _l.classList.remove("hide");
+
+    d.body.style.overflowY = 'hidden'
+  } else {
+    e.target.src = menuUrl.close;
+    _e.classList.remove("menu");
+    _l.classList.add("hide");
+
+    d.body.style.overflowY = 'scroll'
+  }
+}
 
 function Header() {
   const navItems = navLinks.map((item) => (
@@ -36,7 +68,6 @@ function Header() {
       <span className="navLinks">{item.title} </span>
     </li>
   ));
-
 
   return (
     <div className="hd" onMouseMove={userIsOver} onPointerLeave={userIsOut}>
@@ -51,7 +82,7 @@ function Header() {
           <Button />
         </div>
         <div className="menu hide">
-          <img src="../../images/icon-hamburger.svg" />
+          <img src={menuUrl.close} onClick={userIsClickingOnMenu} alt="menu" />
         </div>
       </div>
 
