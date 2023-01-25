@@ -38,28 +38,33 @@ w.addEventListener("resize", userIsResizing);
 function userIsResizing() {
   // log(w.innerWidth);
   const _a = d.querySelector(".menu");
+  const _l = d.querySelector(".layer");
   if (w.innerWidth <= 768) {
     _a.classList.remove("hide");
-  } else _a.classList.add("hide");
+  } else {
+    _a.classList.add("hide");
+    _l.classList.add("hide");
+  }
 }
 
 function userIsClickingOnMenu(e) {
   let _s = e.target.src;
-  let _e = d.querySelector(".nav");
-  let _l = d.querySelector(".layer");
+  const _e = d.querySelector(".nav");
+  const _l = d.querySelector(".layer");
   if (_s.match(/ham/g)) {
     e.target.src = menuUrl.open;
     _e.classList.add("menu");
     _l.classList.remove("hide");
 
-    d.body.style.overflowY = 'hidden'
+    d.body.style.overflowY = "hidden";
   } else {
     e.target.src = menuUrl.close;
     _e.classList.remove("menu");
     _l.classList.add("hide");
 
-    d.body.style.overflowY = 'scroll'
+    d.body.style.overflowY = "scroll";
   }
+
 }
 
 function Header() {
