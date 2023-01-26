@@ -8,14 +8,14 @@ const cardData = [
   {
     id: 0,
     icon: "../../images/avatar-anisha.png",
-    name: "  Anisha Li",
+    name: "Anisha Li",
     summary: ` “Manage has supercharged our team's workflow. The ability to maintain 
     visibility on larger milestones at all times keeps everyone motivated.”`,
   },
   {
     id: 1,
     icon: "../../images/avatar-ali.png",
-    name: "  Ali Bravo",
+    name: "Ali Bravo",
     summary: ` “We have been able to cancel so many other subscriptions since using 
     Manage. There is no more cross-channel confusion and everyone is much 
     more focused.”
@@ -32,7 +32,7 @@ const cardData = [
   {
     id: 3,
     icon: "../../images/avatar-shanai.png",
-    name: " Shanai Gough",
+    name: "Shanai Gough",
     summary: `“Their software allows us to track, manage and collaborate on our projects 
     from anywhere. It keeps the whole team in-sync without being intrusive.”`,
   },
@@ -50,7 +50,6 @@ function userIsDown(e) {
   const _p = d.querySelector(".card");
   _p.addEventListener("mousemove", moving);
 
-  // log("down");
 
   if (_t.classList.contains("card__item")) {
     _t.classList.add("move");
@@ -66,7 +65,6 @@ function userIsUp(e) {
     .querySelectorAll(".card__item")
     .forEach((card) => card.classList.remove("move"));
 
-  // log("up");
 }
 
 function moving(e) {
@@ -77,7 +75,6 @@ function moving(e) {
     card.style.setProperty("--x", `${_x - _w}px`);
     card.style.setProperty("--y", `${_y - _h}px`);
   });
-  // log(e.clientX);
 }
 
 function Card() {

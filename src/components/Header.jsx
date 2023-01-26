@@ -64,7 +64,6 @@ function userIsClickingOnMenu(e) {
 
     d.body.style.overflowY = "scroll";
   }
-
 }
 
 function Header() {
