@@ -84,6 +84,14 @@ function userIsOutOfIcon(e) {
   }
 }
 
+function userIsTouchingIcon(e) {
+  let prop = e.changedTouches[0]
+}
+
+function userIsNotTouchingIcon(e) {
+
+}
+
 function Footer() {
   const svgItems = svg.map((item) => (
     <svg
@@ -94,6 +102,9 @@ function Footer() {
       data-name={item.name}
       onPointerMove={userIsOverIcon}
       onPointerLeave={userIsOutOfIcon}
+
+      onTouchMove={userIsTouchingIcon}
+      onTouchEnd={userIsNotTouchingIcon}
     >
       <path d={item.src} data-name={item.name} />
     </svg>

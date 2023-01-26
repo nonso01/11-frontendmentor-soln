@@ -1,6 +1,6 @@
 import Button from "./Button";
 import { d, w } from "./Button";
-// import { userIsOut, userIsOver } from "./Header";
+
 
 const log = console.log;
 
@@ -44,12 +44,10 @@ const cardData = [
   // },
 ];
 
-
 function userIsDown(e) {
   const _t = e.target;
   const _p = d.querySelector(".card");
   _p.addEventListener("mousemove", moving);
-
 
   if (_t.classList.contains("card__item")) {
     _t.classList.add("move");
@@ -64,7 +62,6 @@ function userIsUp(e) {
   const _e = d
     .querySelectorAll(".card__item")
     .forEach((card) => card.classList.remove("move"));
-
 }
 
 function moving(e) {
@@ -72,10 +69,18 @@ function moving(e) {
 
   const _e = d.querySelectorAll(".card__item").forEach((card) => {
     const [_w, _h] = [card.clientWidth, card.clientHeight];
-    card.style.setProperty("--x", `${_x - _w}px`);
-    card.style.setProperty("--y", `${_y - _h}px`);
+    const [left, top] = [_x - _w, _y - _h];
+
+    card.style.setProperty("--x", `${left}px`);
+    card.style.setProperty("--y", `${top}px`);
   });
 }
+
+
+function userIsTouching(e) {
+  log(e.changedTouches)
+}
+
 
 function Card() {
   const cardItems = cardData.map((item) => (
@@ -97,7 +102,12 @@ function Card() {
   ));
 
   return (
-    <div className="card" onPointerDown={userIsDown} onPointerUp={userIsUp}>
+    <div
+      className="card"
+      onPointerDown={userIsDown}
+      onPointerUp={userIsUp}
+      // onTouchStart={userIsTouching}
+    >
       <h3 className="title title-medium"> What they've said</h3>
 
       <div className="card__parent">{cardItems}</div>
@@ -107,4 +117,4 @@ function Card() {
 }
 
 export default Card;
-export {log}
+export { log };
