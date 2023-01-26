@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import Button from "./Button";
 import "../../images/logo.svg";
+
+import { log } from "./Card";
+
 const title = {
   color: "white",
 };
@@ -85,12 +88,10 @@ function userIsOutOfIcon(e) {
 }
 
 function userIsTouchingIcon(e) {
-  let prop = e.changedTouches[0]
+  let prop = e.changedTouches[0];
 }
 
-function userIsNotTouchingIcon(e) {
-
-}
+function userIsNotTouchingIcon(e) {}
 
 function Footer() {
   const svgItems = svg.map((item) => (
@@ -102,7 +103,6 @@ function Footer() {
       data-name={item.name}
       onPointerMove={userIsOverIcon}
       onPointerLeave={userIsOutOfIcon}
-
       onTouchMove={userIsTouchingIcon}
       onTouchEnd={userIsNotTouchingIcon}
     >
