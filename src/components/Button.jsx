@@ -2,14 +2,14 @@ import React, { useState } from "react";
 
 const w = globalThis ?? window;
 const d = document;
+const log = console.log;
+// function userIsClicking(e) {
+//   e.preventDefault();
+// }
 
-function userIsClicking(e) {
-  e.preventDefault();
-}
-
-function Button({ text = "Get Started" }) {
+function Button({ text = "Get Started", onClick }) {
   return (
-    <button className="btn" onClick={userIsClicking}>
+    <button className="btn" onClick={onClick}>
       {text}
     </button>
   );
@@ -17,4 +17,4 @@ function Button({ text = "Get Started" }) {
 
 export default Button;
 
-export {w, d}
+export { w, d, log };

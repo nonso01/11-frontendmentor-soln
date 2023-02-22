@@ -1,6 +1,10 @@
 import React, { useState } from "react";
-import Button, { w, d } from "./Button";
-import { log } from "./Card";
+import Button, { w, d, log } from "./Button";
+import Icon, { iconUrl } from "./Icon";
+
+const _span = d.createElement("span");
+_span.classList.add("over");
+
 
 const navLinks = [
   {
@@ -23,70 +27,59 @@ const navLinks = [
     id: 4,
     title: "Community",
   },
-];
+].map((item) => (
+  <li key={item.id}>
+    <span className="navLinks">{item.title} </span>
+  </li>
+));
 
-const menuUrl = {
-  open: "../../images/icon-close.svg",
-  close: "../../images/icon-hamburger.svg",
-};
+export default function Header() {
+  let [toggleMenu, setToggleMenu] = useState(false);
 
-const _span = d.createElement("span");
-_span.classList.add("over");
+  w.onresize = () => {
+    const _a = d.querySelector(".menu");
 
-w.addEventListener("resize", userIsResizing);
+    if (w.innerWidth <= 768) {
+      _a.classList.remove("hide");
+    } else {
+      _a.classList.add("hide");
+    }
+  };
 
-function userIsResizing() {
-  // log(w.innerWidth);
-  const _a = d.querySelector(".menu");
-  const _l = d.querySelector(".layer");
-  if (w.innerWidth <= 768) {
-    _a.classList.remove("hide");
-  } else {
-    _a.classList.add("hide");
-    _l.classList.add("hide");
+  function handleClick(e) {
+    let t = e.target,
+      datasetX = t?.dataset?.x;
+    if (datasetX) {
+      setToggleMenu(!toggleMenu);
+    }
   }
-}
 
-function userIsClickingOnMenu(e) {
-  let _s = e.target.src;
-  const _e = d.querySelector(".nav");
-  const _l = d.querySelector(".layer");
-  if (_s.match(/ham/g)) {
-    e.target.src = menuUrl.open;
-    _e.classList.add("menu");
-    _l.classList.remove("hide");
-
-    d.body.style.overflowY = "hidden";
-  } else {
-    e.target.src = menuUrl.close;
-    _e.classList.remove("menu");
-    _l.classList.add("hide");
-
-    d.body.style.overflowY = "scroll";
+  {
+    toggleMenu
+      ? (d.body.style.overflowY = "hidden")
+      : (d.body.style.overflowY = "scroll");
   }
-}
-
-function Header() {
-  const navItems = navLinks.map((item) => (
-    <li key={item.id}>
-      <span className="navLinks">{item.title} </span>
-    </li>
-  ));
 
   return (
-    <div className="hd" onMouseMove={userIsOver} onPointerLeave={userIsOut}>
+    <div
+      className="hd"
+      onClick={handleClick}
+    >
       <div className="nav__wrapper">
         <div className="hd__logo">
-          <img src="../../images/logo.svg" alt="logo" />
+          <Icon url={iconUrl.logo} />
         </div>
 
-        <div className="nav">
-          <ul> {navItems} </ul>
-
+        <div className={toggleMenu ? "nav menu" : "nav"}>
+          <ul> {navLinks} </ul>
           <Button />
         </div>
+
         <div className="menu hide">
-          <img src={menuUrl.close} onClick={userIsClickingOnMenu} alt="menu" />
+          <Icon
+            url={toggleMenu ? iconUrl.crossIcon : iconUrl.menuIcon}
+            data_x={"menu"}
+          />
         </div>
       </div>
 
@@ -103,26 +96,24 @@ function Header() {
         </div>
 
         <div className="hd__chat">
-          <img src="../../images/illustration-intro.svg" alt="chat" />
+          <Icon url={iconUrl.illustrationIntro} />
         </div>
       </div>
+      {toggleMenu ? <div className="layer"></div> : void 0}
     </div>
   );
 }
 
-export function userIsOver(e) {
+export function handleMouseOver(e) {
   e.preventDefault();
   _span.style.setProperty("--x", `${e.pageX}px`);
   _span.style.setProperty("--y", `${e.clientY}px`);
   e.target.parentNode.append(_span);
-  // console.log(e)
 }
 
-export function userIsOut(e) {
+export function handleMouseOut(e) {
   const _spot = d.querySelectorAll("span.over");
   _spot.forEach((n) => {
     n.parentNode.removeChild(n);
   });
 }
-
-export default Header;

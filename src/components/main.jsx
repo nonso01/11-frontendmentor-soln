@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import { userIsOut, userIsOver } from "./Header";
+import { handleMouseOut, handleMouseOver } from "./Header";
 
 const manageData = [
   {
@@ -25,34 +25,36 @@ const manageData = [
     track tasks and share documents. Manage offers an all-in-one team 
     productivity solution.`,
   },
-];
-
-function Main() {
-  let type = manageData.map((item) => (
-    <div className="child" key={item.id}>
-      <i
-        style={{
-          width: "3.75rem",
-          height: "2.5rem",
-          borderRadius: "calc(var(--rad) * 2)",
-          display: "flex",
-          justifyContent: "var(--cn)",
-          alignItems: "var(--cn)",
-          color: "var(--very-light-gray)",
-          backgroundColor: "var(--bright-red)",
-        }}
-      >
-        {item.id}
-      </i>
-      <div>
-        <h3 className="title title-small">{item.title}</h3>{" "}
-        <p className="paragraph">{item.summary}</p>
-      </div>
+].map((item) => (
+  <div className="child" key={item.id}>
+    <i
+      style={{
+        width: "3.75rem",
+        height: "2.5rem",
+        borderRadius: "calc(var(--rad) * 2)",
+        display: "flex",
+        justifyContent: "var(--cn)",
+        alignItems: "var(--cn)",
+        color: "var(--very-light-gray)",
+        backgroundColor: "var(--bright-red)",
+      }}
+    >
+      {item.id}
+    </i>
+    <div>
+      <h3 className="title title-small">{item.title}</h3>{" "}
+      <p className="paragraph">{item.summary}</p>
     </div>
-  ));
+  </div>
+));
 
+export default function Main() {
   return (
-    <div className="main" onMouseMove={userIsOver} onPointerLeave={userIsOut}>
+    <div
+      className="main"
+      onMouseMove={handleMouseOver}
+      onPointerLeave={handleMouseOut}
+    >
       <div className="main__desc">
         <h2 className="title title-medium">What's different about Manage?</h2>
         <p className="paragraph" style={{ paddingRight: "20.2%" }}>
@@ -62,9 +64,7 @@ function Main() {
         </p>
       </div>
 
-      <div className="main__type">{type}</div>
+      <div className="main__type">{manageData}</div>
     </div>
   );
 }
-
-export default Main;

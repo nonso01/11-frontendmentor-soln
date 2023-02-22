@@ -1,8 +1,10 @@
-import Button from "./Button";
-import { d, w } from "./Button";
+import Button, { d, w } from "./Button";
+import avatarAli from "../../images/avatar-ali.png";
+import avatarAnisha from "../../images/avatar-anisha.png";
+import avatarRichard from "../../images/avatar-richard.png";
+import avatarShanai from "../../images/avatar-shanai.png";
 
-
-const log = console.log;
+export const log = console.log;
 
 const cardData = [
   {
@@ -76,13 +78,11 @@ function moving(e) {
   });
 }
 
-
 function userIsTouching(e) {
-  log(e.changedTouches)
+  log(e.changedTouches);
 }
 
-
-function Card() {
+export default function Card() {
   const cardItems = cardData.map((item) => (
     <div className="card__item" key={item.id}>
       <img
@@ -115,6 +115,3 @@ function Card() {
     </div>
   );
 }
-
-export default Card;
-export { log };
